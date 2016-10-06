@@ -1,0 +1,21 @@
+[
+    {
+        "commit": {
+            "author_email": "lucian.petrica@upb.ro",
+            "author_name": "Lucian Petric\u0103",
+            "authored_date": "2016-06-16T22:36:14.000+01:00",
+            "committed_date": "2016-06-16T22:36:14.000+01:00",
+            "committer_email": "lucian.petrica@upb.ro",
+            "committer_name": "Lucian Petric\u0103",
+            "id": "6cd9517662ae081442bec711b702c2a4e824609f",
+            "message": "When Sim plugin fails, return the correct number of test-cases to enable the proper grade to be calculated when other graders are in the pipeline; fixes #3\n",
+            "parent_ids": [
+                "c8f4f1fd753d106293bcb643983348ddb9ee4980"
+            ]
+        },
+        "developers_can_merge": false,
+        "developers_can_push": false,
+        "name": "master",
+        "protected": true
+    }
+]

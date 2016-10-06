@@ -1,0 +1,135 @@
+[
+    {
+        "commit": {
+            "author_email": "lucian.petrica@upb.ro",
+            "author_name": "Lucian Petric\u0103",
+            "authored_date": "2015-07-20T23:30:21.000+01:00",
+            "committed_date": "2015-07-20T23:30:21.000+01:00",
+            "committer_email": "lucian.petrica@upb.ro",
+            "committer_name": "Lucian Petric\u0103",
+            "id": "41cff2bd8d7e6b62cb6137ae5908cb5f6898da6a",
+            "message": "Pulled upstream incrementing command enhancements\n",
+            "parent_ids": [
+                "65f701cec93e9468e8a5e3a562aca8e27972bb2e"
+            ]
+        },
+        "developers_can_merge": false,
+        "developers_can_push": false,
+        "name": "brisk_hw_hamming",
+        "protected": true
+    },
+    {
+        "commit": {
+            "author_email": "lucian.petrica@upb.ro",
+            "author_name": "Lucian Petric\u0103",
+            "authored_date": "2015-05-17T19:29:57.000+03:00",
+            "committed_date": "2015-05-17T19:29:57.000+03:00",
+            "committer_email": "lucian.petrica@upb.ro",
+            "committer_name": "Lucian Petric\u0103",
+            "id": "815160d32a6ed33a95715d16497807cd99372670",
+            "message": "Fixed syntax errors\n",
+            "parent_ids": [
+                "3b1be3f3d51b1758318591ff79f795b9d7469ccc"
+            ]
+        },
+        "developers_can_merge": false,
+        "developers_can_push": false,
+        "name": "cellularrng",
+        "protected": true
+    },
+    {
+        "commit": {
+            "author_email": "lucian.petrica@upb.ro",
+            "author_name": "Lucian Petric\u0103",
+            "authored_date": "2016-08-24T22:50:22.000+01:00",
+            "committed_date": "2016-08-24T22:50:22.000+01:00",
+            "committer_email": "lucian.petrica@upb.ro",
+            "committer_name": "Lucian Petric\u0103",
+            "id": "c4b0818a44e86acd2a658b81e580d88156cc4653",
+            "message": "Fixed potential clocking bug, whereby the AXI ports of PS7 were clocked by PL CLK0 while the rest of the xillybus interface was clocked by PL CLK1; all interface clocking is now on CLK1, while the Connex core clock was moved to CLK0\n",
+            "parent_ids": [
+                "a5a12eea4bdfc1c46d8df8990c6172f8859c7f76"
+            ]
+        },
+        "developers_can_merge": false,
+        "developers_can_push": false,
+        "name": "connex",
+        "protected": true
+    },
+    {
+        "commit": {
+            "author_email": "lucian.petrica@upb.ro",
+            "author_name": "Lucian Petric\u0103",
+            "authored_date": "2015-07-14T19:26:14.000+03:00",
+            "committed_date": "2015-07-14T19:26:14.000+03:00",
+            "committer_email": "lucian.petrica@upb.ro",
+            "committer_name": "Lucian Petric\u0103",
+            "id": "feceb19498898a59636ba9ff7ee50a7fc55005e6",
+            "message": "Pulled upstream ConnexRC changes, and deactivated RAW protection to improve timing\n",
+            "parent_ids": [
+                "dd85a06e5338e6b0d91c5e128e6538309df79705"
+            ]
+        },
+        "developers_can_merge": false,
+        "developers_can_push": false,
+        "name": "connex_rc",
+        "protected": true
+    },
+    {
+        "commit": {
+            "author_email": "lucian.petrica@upb.ro",
+            "author_name": "Lucian Petric\u0103",
+            "authored_date": "2016-08-11T01:23:55.000+03:00",
+            "committed_date": "2016-08-11T01:23:55.000+03:00",
+            "committer_email": "lucian.petrica@upb.ro",
+            "committer_name": "Lucian Petric\u0103",
+            "id": "75e9d95b230d2c530c83067c837cdf6e4fe27f85",
+            "message": "pulled xilinx-v2016.2 release from U-Boot upstream, and modified patch to fit the new source; Removed unnecessary target UBOOT_MKIMG from Makefile; Fixes #1\n",
+            "parent_ids": [
+                "f8c0ff8f15b98d5eb2618d051ae1bb099af530dd"
+            ]
+        },
+        "developers_can_merge": false,
+        "developers_can_push": false,
+        "name": "master",
+        "protected": true
+    },
+    {
+        "commit": {
+            "author_email": "lucian.petrica@upb.ro",
+            "author_name": "Lucian Petric\u0103",
+            "authored_date": "2015-07-20T23:41:05.000+01:00",
+            "committed_date": "2015-07-20T23:41:05.000+01:00",
+            "committer_email": "lucian.petrica@upb.ro",
+            "committer_name": "Lucian Petric\u0103",
+            "id": "13b3077cf94b53fe4751e57be73fa340562eb9a2",
+            "message": "Upgraded the matcher software to use the vectordistance library for accelerator operation; added evaluation script\n",
+            "parent_ids": [
+                "82be439ccd9042e26efc89edab15b57cb80ff811"
+            ]
+        },
+        "developers_can_merge": false,
+        "developers_can_push": false,
+        "name": "sift_hw_ssd",
+        "protected": true
+    },
+    {
+        "commit": {
+            "author_email": "lucian.petrica@upb.ro",
+            "author_name": "Lucian Petric\u0103",
+            "authored_date": "2015-05-12T20:33:54.000+03:00",
+            "committed_date": "2015-05-12T20:33:54.000+03:00",
+            "committer_email": "lucian.petrica@upb.ro",
+            "committer_name": "Lucian Petric\u0103",
+            "id": "06ee3b55b108333c0894e147df61bfe45ae99b0e",
+            "message": "Software testbench, verified on Zedboard hardware\n",
+            "parent_ids": [
+                "32ccb4feffcacb19818d71e4ee8c40d924941330"
+            ]
+        },
+        "developers_can_merge": false,
+        "developers_can_push": false,
+        "name": "vasile",
+        "protected": true
+    }
+]

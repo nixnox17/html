@@ -1,0 +1,21 @@
+[
+    {
+        "commit": {
+            "author_email": "lucian.petrica@upb.ro",
+            "author_name": "Lucian Petric\u0103",
+            "authored_date": "2016-06-08T22:51:01.000+01:00",
+            "committed_date": "2016-06-08T22:51:01.000+01:00",
+            "committer_email": "lucian.petrica@upb.ro",
+            "committer_name": "Lucian Petric\u0103",
+            "id": "16ee7c24ce660d97c01852c8a3fb14e5abb53de1",
+            "message": "Removed leftover SVN metadata\n",
+            "parent_ids": [
+                "6a9fa124d7965a10868af7659f4d7ae0e87ccf6f"
+            ]
+        },
+        "developers_can_merge": false,
+        "developers_can_push": false,
+        "name": "master",
+        "protected": true
+    }
+]

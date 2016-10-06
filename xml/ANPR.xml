@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+
+<parameters>
+   <boolean>
+        <autoGain>false</autoGain>
+        <runAlpr>true</runAlpr>
+        <motionDetection>true</motionDetection>
+        <clustering>true</clustering>
+        <streaming>true</streaming>
+   </boolean>
+
+   <numbers>
+       <width>1280
+       			<lowerLimit>640</lowerLimit>
+       			<upperLimit>1280</upperLimit>
+       		</width>
+             		<height>1024
+       			<lowerLimit>480</lowerLimit>
+       			<upperLimit>1024</upperLimit>
+       		</height>
+             		<exposureTimeLow>0
+       			<lowerLimit>0</lowerLimit>
+       			<upperLimit></upperLimit>
+       		</exposureTimeLow>
+             		<exposureTimeHigh>2500
+       			<lowerLimit>0</lowerLimit>
+       			<upperLimit></upperLimit>
+       		</exposureTimeHigh>
+             		<photoCount>0
+       			<lowerLimit>0</lowerLimit>
+       			<upperLimit></upperLimit>
+       		</photoCount>
+             		<delay>0
+       			<lowerLimit>0</lowerLimit>
+       			<upperLimit></upperLimit>
+       		</delay>
+       		<horizontalOffset>0
+       			<lowerLimit>0</lowerLimit>
+       			<upperLimit>1279</upperLimit>
+       		</horizontalOffset>
+       		<verticalOffset>0
+       			<lowerLimit>0</lowerLimit>
+       			<upperLimit>1023</upperLimit>
+       		</verticalOffset>
+       		<streamWidth>640
+       			<lowerLimit>640</lowerLimit>
+       			<upperLimit>1280</upperLimit>
+       		</streamWidth>
+       		<streamHeight>480
+       			<lowerLimit>480</lowerLimit>
+       			<upperLimit>1024</upperLimit>
+       		</streamHeight>
+   </numbers>
+
+    <strings>
+                    <logFile>/var/log/anpr.log</logFile>
+              		<logLevel>DEBUG</logLevel>
+              		<photoSavePath>/var/anpr</photoSavePath>
+              		<cameraId>0</cameraId>
+              		<siteId>Unknown</siteId>
+   </strings>
+
+</parameters>

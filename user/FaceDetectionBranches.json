@@ -1,0 +1,40 @@
+[
+    {
+        "commit": {
+            "author_email": "teodor.stan@philro-vision.com",
+            "author_name": "Teodor Stan",
+            "authored_date": "2016-07-13T20:24:43.000+03:00",
+            "committed_date": "2016-07-13T20:24:43.000+03:00",
+            "committer_email": "teodor.stan@philro-vision.com",
+            "committer_name": "teodor.stan",
+            "id": "dea29b7a79d5808f48d4a2ce24fc4d17594f2bcf",
+            "message": "Updated to include support for openCV 3.1\n\nShould still work fine on older versions of opencv.\nFinely tuned for webcam.\nGreatly improved performance by losing some small faces.\nReduced the chance of false positives.\n",
+            "parent_ids": [
+                "ba1dd9f17479144288886229a53586a837cf9b10"
+            ]
+        },
+        "developers_can_merge": false,
+        "developers_can_push": true,
+        "name": "master",
+        "protected": true
+    },
+    {
+        "commit": {
+            "author_email": "teodor.stan@philro-vision.com",
+            "author_name": "teodor.stan",
+            "authored_date": "2016-07-29T16:15:30.000+03:00",
+            "committed_date": "2016-07-29T16:15:30.000+03:00",
+            "committer_email": "teodor.stan@philro-vision.com",
+            "committer_name": "teodor.stan",
+            "id": "3e65090fff504df6b96097c586303f125bea73b6",
+            "message": "Works beter. ",
+            "parent_ids": [
+                "1c5b91d9ab4ca07cf7641dccbd20e5466957af53"
+            ]
+        },
+        "developers_can_merge": false,
+        "developers_can_push": false,
+        "name": "objdetect",
+        "protected": false
+    }
+]

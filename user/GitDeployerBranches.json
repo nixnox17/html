@@ -1,0 +1,21 @@
+[
+    {
+        "commit": {
+            "author_email": "andrei.gaita@philro-vision.com",
+            "author_name": "Andrei Gaita",
+            "authored_date": "2016-09-07T13:14:41.000+03:00",
+            "committed_date": "2016-09-07T13:14:41.000+03:00",
+            "committer_email": "andrei.gaita@philro-vision.com",
+            "committer_name": "Andrei Gaita",
+            "id": "41910908a7a0962e08459ef4df063b8eae5b37f3",
+            "message": "Terminal + Serverdeploy + Ajax post-deploy\n",
+            "parent_ids": [
+                "195e051149febf2b659d981f43cb904858b8b97e"
+            ]
+        },
+        "developers_can_merge": false,
+        "developers_can_push": false,
+        "name": "Template",
+        "protected": true
+    }
+]

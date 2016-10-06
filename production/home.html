@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title> Git Application </title>
+
+    <!-- Bootstrap -->
+    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- bootstrap-progressbar -->
+    <link href="../vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <!-- JQVMap -->
+    <link href="../vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
+
+    <!-- Custom Theme Style -->
+    <link href="../build/css/custom.min.css" rel="stylesheet">
+    <!--Project table-->
+    <link rel="stylesheet" type="text/css" href="css/proj.css">
+
+    <!-- Datatables -->
+    <link href="../vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+    <!--Import JQuery-->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.js"></script>
+
+    <style>
+	#pricing-table h3 span {
+                                background-size: 100% 100%;
+			        }
+    </style>
+    <!--Script for adapting div to resolution-->
+    <script>
+    $(document).ready(function(){
+        resizeDiv();
+    });
+
+    window.onresize = function(event) {
+        resizeDiv();
+    }
+
+    function resizeDiv() {
+        vpw = $(window).width();
+        vph = $(window).height();
+        vph = vph/2;
+        //console.log("width: "+ vpw);
+        //console.log("height: "+vph);
+        var allProj = document.querySelectorAll("[id='projTable']");
+        for(var i=0; i< allProj.length; i++){
+            $(allProj[i]).height(450);
+        }
+        //$('id=[projTable]').height(700);
+    }
+    </script>
+
+
+  </head>
+
+  <body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+        <div class="col-md-3 left_col">
+          <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0;">
+              <a href="home.html" class="site_title"><i class="fa fa-github"></i> <span>Git Deployer!</span></a>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <!-- menu profile quick info -->
+            <div class="profile">
+                <?php
+                session_start();
+                $user=$_SESSION['userDeploy'];
+                ?>
+              <div class="profile_pic">
+                <img src="images/img.svg" alt="..." class="img-circle profile_img">
+              </div>
+              <div class="profile_info">
+                <span>Welcome,</span>
+                <?php
+                    echo "<h2>".$user."</h2>";
+                ?>
+              </div>
+            </div>
+            <!-- /menu profile quick info -->
+
+            <br />
+
+            <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+              <div class="menu_section">
+                <h3>General</h3>
+                <ul class="nav side-menu">
+                  <li><a href="home.html"><i class="fa fa-home"></i> Home <span class="fa fa-cubes"></span></a>
+
+                  </li>
+                  <li><a><i class="fa fa-sitemap"></i> Projects <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+		    <?php
+                $mysqli=new mysqli("localhost","root","lenovo1993","Deploy");
+                if (mysqli_connect_errno()){
+                   echo "Failed to connect to MySQL: " . mysqli_connect_error();
+                }
+                $test="SELECT * FROM User WHERE nameGit = '$user'";
+                $result=$mysqli->query($test) or die(mysqli_error());
+                $usermysql=mysqli_fetch_array($result);
+
+                $token = $usermysql['token'];
+                $getProjectJson="sudo curl --header \"PRIVATE-TOKEN: ".$token."\" \"http://gitlab.dcae.pub.ro/api/v3/projects\" | python -m json.tool";
+                $path="/var/www/html/user/".$user.'/';
+                $fileName = $path.'projectList.json';
+                $outputCommand=shell_exec($getProjectJson);
+                $myfile = fopen($fileName , "w");
+                $fwriteBool = fwrite($myfile, $outputCommand);
+                fclose($myfile);
+
+				$pathJson="http://141.85.170.136/user/".$user."/projectList.json";
+                $homepage = file_get_contents($pathJson);
+                $data=json_decode($homepage);
+				for ($x = 0; $x < count($data); $x++) {
+                        $projects=$data[$x]->name;
+                        $escProjects = str_replace(' ','',$projects);
+					    $id=$data[$x]->id;
+                        $pathProj=$data[$x]->path;
+                        $getBranchJson = "curl --header \"PRIVATE-TOKEN: ".$token."\" \"http://gitlab.dcae.pub.ro/api/v3/projects/".$id."/repository/branches\" | python -m json.tool";
+                        $outputBranch=shell_exec($getBranchJson);
+                        $branchName = $path.$escProjects.'Branches.json';
+                        $branchFile = fopen($branchName,"w");
+                        $fwriteBool = fwrite($branchFile, $outputBranch);
+                        fclose($branchFile);
+
+                        echo "<li><a href=\"projects.html?idProject=".$id."&pathProj=".$pathProj."\">".$projects."</a></li>";
+                }
+        	?>
+                    </ul>
+                  </li>
+                  <li><a href="deploy.html"><i class="fa fa-upload" ></i> Deploy <span class="fa fa-upload"></span></a>
+
+                  </li>
+                  <li><a><i class="fa fa-bar-chart-o"></i> Logs <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <?php
+                          $json = file_get_contents("http://141.85.170.136/logs/menuLog.json");
+                          $json_a = json_decode($json, true);
+                          $project = "";
+                          $year = "";
+                          $month = "";
+                          $day = "";
+                          $hour = "";
+                          $author = "";
+                          for($k = 0; $k < sizeof($json_a['project']); $k++){
+                              $project = $json_a['project'][$k]['nameProject'];
+                              $lenYear = sizeof($json_a['project'][$k]['year']);
+
+                              echo "<li><a>".$project." Logs<span class=\"fa fa-chevron-down\"></span></a>";
+                              echo "<ul class=\"nav child_menu\">";
+                                  for($j = 0; $j < sizeof($json_a['project'][$k]['year']); $j++ ){
+                                      $year = $json_a['project'][$k]['year'][$j]['nameYear'];
+                                      echo "<li><a href=\"#\">".$year."<span class=\"fa fa-chevron-down\"></span></a>";
+                                      echo "<ul class=\"nav child_menu\">";
+                                          for($i = 0; $i < sizeof($json_a['project'][$k]['year'][$j]['month']); $i++){
+                                              $month = $json_a['project'][$k]['year'][$j]['month'][$i]['nameMonth'];
+                                              echo "<li class = \"sub_menu\"><a href=\"#\">".$month."<span class=\"fa fa-chevron-down\"></span></a>";
+                                              echo "<ul class=\"nav child_menu\">";
+                                                  for($q = 0; $q < sizeof($json_a['project'][$k]['year'][$j]['month'][$i]['save']); $q++){
+                                                      $day = $json_a['project'][$k]['year'][$j]['month'][$i]['save'][$q]['Day'];
+                                                      $hour = $json_a['project'][$k]['year'][$j]['month'][$i]['save'][$q]['Hour'];
+                                                      $author = $json_a['project'][$k]['year'][$j]['month'][$i]['save'][$q]['Author'];
+                                                      $branch = $json_a['project'][$k]['year'][$j]['month'][$i]['save'][$q]['Branch'];
+                                                      $nameDay = $json_a['project'][$k]['year'][$j]['month'][$i]['save'][$q]['nameDay'];
+                                                      echo "<li class = \"sub_menu\"><a href=\"logs.html?nameProject=".$project."&Branch=".$branch.
+                                                          "&nameYear=".$year."&nameMonth=".$month."&Day=".$day."&Hour=".$hour."&Author=".$author.
+                                                          "\">".$nameDay." ".$day.",\n".$hour."</a></li>";
+                                                  }
+                                              echo "</ul>";
+                                              echo "</li>";
+                                          }
+                                      echo "</ul>";
+                                  }
+                                  echo "</li>";
+                              echo "</ul>";
+                          }
+                  ?>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <div class="menu_section">
+
+              </div>
+
+            </div>
+            <!-- /sidebar menu -->
+
+            <!-- /menu footer buttons -->
+            <div class="sidebar-footer hidden-small">
+              <a data-toggle="tooltip" data-placement="top" title="Settings">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Lock">
+                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Logout">
+                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+              </a>
+            </div>
+            <!-- /menu footer buttons -->
+          </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+          <div class="nav_menu">
+            <nav>
+              <div class="nav toggle">
+                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+              </div>
+
+              <ul class="nav navbar-nav navbar-right">
+                <li class="">
+                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <img src="images/img.svg" alt=""><?php echo $user; ?>
+                    <span class=" fa fa-angle-down"></span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-usermenu pull-right">
+                    <li><a href="javascript:;"> Profile</a></li>
+                    <li><a href="profile_modification.html"><i class="fa fa-gears pull-right"></i>Modify Profile</a></li>
+                    <li><a href="../index.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+		<div class="right_col" role="main">
+          <div class="">
+            <div class="page-title">
+              <div class="">
+                <h3 align="center">Projects</h3>
+              </div>
+
+              <div class="title_right">
+
+              </div>
+            </div>
+   <div id="pricing-table">
+   <div class="row">
+   <div class="x_content">
+			<?php
+				for ($x = 0; $x < count($data); $x++) {
+                    $nameProj=$data[$x]->name;
+					$urlImg=$data[$x]->avatar_url;
+                    $description=$data[$x]->description;
+					$createDate=$data[$x]->namespace->created_at;
+					$lastDate=$data[$x]->last_activity_at;
+					$issues=$data[$x]->open_issues_count;
+					$id=$data[$x]->id;
+                    $path = $data[$x]->pathProj;
+					echo "<div id=\"projTable\" class=\"plan\">";
+					echo "<h3>".$nameProj."<span style=\"background:url(".$urlImg.") center; background-size: 100% 100%\"></span></h3>";
+                    echo "<a class=\"signup\" <a href=\"projects.html?idProject=".$id."&pathProj=".$pathProj." \">Select Project</a>";
+					echo "<ul>";
+					echo "<li><b>Description </b> ".$description."</li>";
+					echo "<li><b>Issues </b> ".$issues."</li>";
+					echo "<li><b>Created at </b> ".$createDate."</li>";
+					echo "<li><b>Last Activity at </b> ".$lastDate."</li>";
+					echo "</ul>";
+					echo "</div>";
+                }
+			?>
+
+    </div>
+    </div>
+    </div>
+
+            </div>
+          </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+          <div class="pull-right">
+           Git Application by Andrei Gaita
+          </div>
+          <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="../vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="../vendors/nprogress/nprogress.js"></script>
+    <!-- Chart.js -->
+    <script src="../vendors/Chart.js/dist/Chart.min.js"></script>
+    <!-- gauge.js -->
+    <script src="../vendors/gauge.js/dist/gauge.min.js"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <!-- iCheck -->
+    <script src="../vendors/iCheck/icheck.min.js"></script>
+    <!-- Skycons -->
+    <script src="../vendors/skycons/skycons.js"></script>
+    <!-- Flot -->
+    <script src="../vendors/Flot/jquery.flot.js"></script>
+    <script src="../vendors/Flot/jquery.flot.pie.js"></script>
+    <script src="../vendors/Flot/jquery.flot.time.js"></script>
+    <script src="../vendors/Flot/jquery.flot.stack.js"></script>
+    <script src="../vendors/Flot/jquery.flot.resize.js"></script>
+    <!-- Flot plugins -->
+    <script src="../vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+    <script src="../vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+    <script src="../vendors/flot.curvedlines/curvedLines.js"></script>
+    <!-- DateJS -->
+    <script src="../vendors/DateJS/build/date.js"></script>
+
+    <!-- bootstrap-daterangepicker -->
+    <script src="js/moment/moment.min.js"></script>
+    <script src="js/datepicker/daterangepicker.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="../build/js/custom.min.js"></script>
+
+	<!--Table Sripts -->
+
+
+    <!-- Datatables -->
+    <script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+    <script src="../vendors/jszip/dist/jszip.min.js"></script>
+    <script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
+    <script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
+
+
+    <!-- Datatables -->
+    <script>
+      $(document).ready(function() {
+        var handleDataTableButtons = function() {
+          if ($("#datatable-buttons").length) {
+            $("#datatable-buttons").DataTable({
+              dom: "Bfrtip",
+              buttons: [
+                {
+                  extend: "copy",
+                  className: "btn-sm"
+                },
+                {
+                  extend: "csv",
+                  className: "btn-sm"
+                },
+                {
+                  extend: "excel",
+                  className: "btn-sm"
+                },
+                {
+                  extend: "pdfHtml5",
+                  className: "btn-sm"
+                },
+                {
+                  extend: "print",
+                  className: "btn-sm"
+                },
+              ],
+              responsive: true
+            });
+          }
+        };
+
+        TableManageButtons = function() {
+          "use strict";
+          return {
+            init: function() {
+              handleDataTableButtons();
+            }
+          };
+        }();
+
+        $('#datatable').dataTable();
+
+        $('#datatable-keytable').DataTable({
+          keys: true
+        });
+
+        $('#datatable-responsive').DataTable();
+
+        $('#datatable-scroller').DataTable({
+          ajax: "js/datatables/json/scroller-demo.json",
+          deferRender: true,
+          scrollY: 380,
+          scrollCollapse: true,
+          scroller: true
+        });
+
+        $('#datatable-fixed-header').DataTable({
+          fixedHeader: true
+        });
+
+        var $datatable = $('#datatable-checkbox');
+
+        $datatable.dataTable({
+          'order': [[ 1, 'asc' ]],
+          'columnDefs': [
+            { orderable: false, targets: [0] }
+          ]
+        });
+        $datatable.on('draw.dt', function() {
+          $('input').iCheck({
+            checkboxClass: 'icheckbox_flat-green'
+          });
+        });
+
+        TableManageButtons.init();
+      });
+    </script>
+    <!-- /Datatables -->
+
+
+  </body>
+</html>

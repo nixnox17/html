@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title> Git Application </title>
+    <!--Post Script-->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">  </script>
+    <!--Import Cookies-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+
+    <!--Ajax Post as Json-->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.js"></script>
+    <script type="text/javascript">
+    <?php
+		$projectName="";
+		$nameBranch="";
+		$randPort=rand(3000,4000);
+		$projectName=$_GET["projectName"];
+		$nameBranch=$_GET["nameBranch"];
+	?>
+      $(document).ready(function(){
+		$("#submit").click(function(){
+			$.ajax({
+				url: "http://141.85.170.136:16000/",
+				type: "POST",
+				data: JSON.stringify({
+					user: $("#user").val(),
+					password: $("#password").val(),
+					ip: $("#ip").val(),
+					port: $("#port").val(),
+		     <?php  echo "randPort:\" ".$randPort."\",\n" ;
+					echo "projectName:\"".$projectName."\",\n";
+                    echo "nameBranch: \"".$nameBranch."\"";
+				?>
+				}),
+				dataType: "application/json; charset=utf-8",
+
+			});
+	});
+      });
+    </script>
+    <!--Read Check Boxes-->
+    <script>
+    $(document).ready( function() {
+        $("#submit").on('click',function(){
+            var allCB = document.querySelectorAll("input[id='check21']");
+            var allCL = document.querySelectorAll("label[id='label21']");
+            var x = [];
+            var l = [];
+            var finalRes = "";
+            for(var i=0; i< allCB.length; i++){
+                x[i]=allCB[i].checked;
+                l[i]=allCL[i].textContent;
+                var booleanRes = String(l[i])+":"+String(x[i])+"~";
+                console.log(booleanRes);
+                finalRes = finalRes + booleanRes;
+            }
+            var allLabelInput = document.querySelectorAll("label[id='labelInput']");
+            var allInputField = document.querySelectorAll("input[id='inputField']");
+            for(var i=0; i< allLabelInput.length; i++){
+                l[i] = allLabelInput[i].textContent;
+                x[i] = allInputField[i].value;
+                var inputRes = String(l[i])+":"+String(x[i])+"~";
+                console.log(inputRes);
+                finalRes=finalRes+inputRes;
+                //document.cookie=inputRes+ ";";
+            }
+            var date = new Date();
+            date.setTime(date.getTime()+(30*1000));
+            var expires = "; expires="+date.toGMTString();
+            finalRes = escape(finalRes);
+            document.cookie="makeOption="+finalRes+expires;
+        });
+    });
+    </script>
+    <!--test click get field-->
+    <script>
+    $(document).ready( function() {
+        $( "#test22" ).on('click',function() {
+            var allcookies = document.cookie;
+            cookiearray = allcookies.split(';');
+            for(var i=0; i<cookiearray.length; i++){
+                name = cookiearray[i].split('=')[0];
+                value = cookiearray[i].split('=')[1];
+                console.log(name);
+                if(name == "makeOption"){
+                    value = unescape(value);
+                    value = value.split(':').join('=');
+                    value = value.split('~').join(' ');
+                    console.log(value);
+                }
+            }
+        });
+    });
+    </script>
+
+    <!-- Bootstrap -->
+    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <!-- Switchery -->
+    <link href="../vendors/switchery/dist/switchery.min.css" rel="stylesheet">
+    <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- bootstrap-progressbar -->
+    <link href="../vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <!-- JQVMap -->
+    <link href="../vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
+
+    <!-- Custom Theme Style -->
+    <link href="../build/css/custom.min.css" rel="stylesheet">
+  </head>
+
+  <body class="nav-md">
+    <?php
+	    $user="";
+	    $pass="";
+        $pathProj=$_GET["pathProj"];
+        session_start();
+        $user=$_SESSION['userDeploy'];
+        $branchesJson="http://141.85.170.136/user/".$user."/".$projectName."Branches.json";
+        $branch = file_get_contents($branchesJson);
+        $branchData=json_decode($branch);
+        for ($x = 0; $x < count($branchData); $x++) {
+            if($nameBranch==$branchData[$x]->name){
+                $commitMessage=$branchData[$x]->commit->message;
+                $commitAuthor=$branchData[$x]->commit->author_name;
+		    }
+        }
+        if($_SERVER["REQUEST_METHOD"] == "POST") {
+            if($_POST['user'] && $_POST['password']){
+                $user=mysql_real_escape_string($_POST['user']);
+                $pass=mysql_real_escape_string(hash($_POST['password']));
+	 	    }
+	    }
+
+    ?>
+    <div class="container body">
+      <div class="main_container">
+        <div class="col-md-3 left_col">
+          <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0;">
+              <a href="index.html" class="site_title"><i class="fa fa-github"></i> <span>Git Deployer!</span></a>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <!-- menu profile quick info -->
+            <div class="profile">
+              <div class="profile_pic">
+                <img src="images/img.svg" alt="..." class="img-circle profile_img">
+              </div>
+              <div class="profile_info">
+                <span>Welcome,</span>
+                <?php
+                    echo "<h2>".$user."</h2>";
+                ?>
+              </div>
+            </div>
+            <!-- /menu profile quick info -->
+
+            <br />
+
+            <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+              <div class="menu_section">
+                <h3>General</h3>
+                <ul class="nav side-menu">
+                  <li><a href="home.html"><i class="fa fa-home"></i> Home <span class="fa fa-cubes"></span></a>
+
+                  </li>
+                  <li><a><i class="fa fa-sitemap"></i> Projects <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <?php
+
+                                $pathJson="http://141.85.170.136/user/".$user."/projectList.json";
+                                $homepage = file_get_contents($pathJson);
+                                $data=json_decode($homepage);
+
+                                for ($x = 0; $x < count($data); $x++) {
+                                    $projects=$data[$x]->name;
+					                $id=$data[$x]->id;
+                                    echo "<li><a href=\"projects.html?idProject=".$id."&pathProj=".$pathProj."\">".$projects."</a></li>";
+                                }
+                        ?>
+
+                    </ul>
+                  </li>
+
+                  <li><a href="deploy.html"><i class="fa fa-upload"></i> Deploy <span class="fa fa-upload"></span></a>
+
+                  </li>
+                  <li><a><i class="fa fa-bar-chart-o"></i> Logs <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <?php
+                          $json = file_get_contents("http://141.85.170.136/logs/menuLog.json");
+                          $json_a = json_decode($json, true);
+                          $project = "";
+                          $year = "";
+                          $month = "";
+                          $day = "";
+                          $hour = "";
+                          $author = "";
+                          for($k = 0; $k < sizeof($json_a['project']); $k++){
+                              $project = $json_a['project'][$k]['nameProject'];
+                              $lenYear = sizeof($json_a['project'][$k]['year']);
+
+                              echo "<li><a>".$project." Logs<span class=\"fa fa-chevron-down\"></span></a>";
+                              echo "<ul class=\"nav child_menu\">";
+                                  for($j = 0; $j < sizeof($json_a['project'][$k]['year']); $j++ ){
+                                      $year = $json_a['project'][$k]['year'][$j]['nameYear'];
+                                      echo "<li><a href=\"#\">".$year."<span class=\"fa fa-chevron-down\"></span></a>";
+                                      echo "<ul class=\"nav child_menu\">";
+                                          for($i = 0; $i < sizeof($json_a['project'][$k]['year'][$j]['month']); $i++){
+                                              $month = $json_a['project'][$k]['year'][$j]['month'][$i]['nameMonth'];
+                                              echo "<li class = \"sub_menu\"><a href=\"#\">".$month."<span class=\"fa fa-chevron-down\"></span></a>";
+                                              echo "<ul class=\"nav child_menu\">";
+                                                  for($q = 0; $q < sizeof($json_a['project'][$k]['year'][$j]['month'][$i]['save']); $q++){
+                                                      $day = $json_a['project'][$k]['year'][$j]['month'][$i]['save'][$q]['Day'];
+                                                      $hour = $json_a['project'][$k]['year'][$j]['month'][$i]['save'][$q]['Hour'];
+                                                      $author = $json_a['project'][$k]['year'][$j]['month'][$i]['save'][$q]['Author'];
+                                                      $branch = $json_a['project'][$k]['year'][$j]['month'][$i]['save'][$q]['Branch'];
+                                                      $nameDay = $json_a['project'][$k]['year'][$j]['month'][$i]['save'][$q]['nameDay'];
+                                                      echo "<li class = \"sub_menu\"><a href=\"logs.html?nameProject=".$project."&Branch=".$branch.
+                                                          "&nameYear=".$year."&nameMonth=".$month."&Day=".$day."&Hour=".$hour."&Author=".$author.
+                                                          "\">".$nameDay." ".$day.",\n".$hour."</a></li>";
+                                                  }
+                                              echo "</ul>";
+                                              echo "</li>";
+                                          }
+                                      echo "</ul>";
+                                  }
+                                  echo "</li>";
+                              echo "</ul>";
+                          }
+                  ?>
+
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <div class="menu_section">
+
+              </div>
+
+            </div>
+            <!-- /sidebar menu -->
+
+            <!-- /menu footer buttons -->
+            <div class="sidebar-footer hidden-small">
+              <a data-toggle="tooltip" data-placement="top" title="Settings">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Lock">
+                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Logout">
+                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+              </a>
+            </div>
+            <!-- /menu footer buttons -->
+          </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+          <div class="nav_menu">
+            <nav>
+              <div class="nav toggle">
+                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+              </div>
+
+              <ul class="nav navbar-nav navbar-right">
+                <li class="">
+                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <img src="images/img.svg" alt=""><?php echo $user;?>
+                    <span class=" fa fa-angle-down"></span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-usermenu pull-right">
+                    <li><a href="javascript:;"> Profile</a></li>
+                    <li><a href="profile_modification.html"><i class="fa fa-gears pull-right"></i>Modify Profile</a></li>
+                    <li><a href="../index.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+	<div class="right_col" role="main">
+            <div class="page-title">
+
+           	</div>
+            <div class="clearfix"></div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h3 align="center">
+                        <?php if(!$projectName){echo "Go to Projects and choose a Branch or a Tag ";}
+                        echo $projectName."  "; ?>
+                        <small><?php echo $nameBranch;?>
+                        </small>
+                    </h3>
+                    <div class="clearfix"></div>
+                  </div>
+
+            <div class="x-content">
+
+                <br />
+                <form class="form-horizontal form-label-left">
+      		    <?php
+			        $xmlUrl="http://141.85.170.136/xml/".$projectName.".xml";
+			        $xml=simplexml_load_file($xmlUrl);
+		            if($xml){
+			            $i=0;
+			            $j=0;
+			            $k=0;
+
+    			        foreach($xml->boolean->children() as $child){
+      						$booleanTag[]=$child->getName();
+							$booleanName[]=$child;
+                            $i=$i+1;
+                            $booleanNr = $booleanNr + 1;
+      					}
+			            foreach($xml->numbers->children() as $child){
+                            $numbersTag[]=$child->getName();
+                            $numbersName[]=$child;
+                            $j=$j+1;
+                            $numberNr = $numberNr + 1;
+                        }
+                        foreach($xml->strings->children() as $child){
+                            $stringsTag[]=$child->getName();
+                            $stringsName[]=$child;
+                            $k=$k+1;
+                            $stringNr = $stringNr + 1;
+                        }
+                        /*
+                        establish which column is bigger and determine
+                        max number of rows
+                        */
+			            if($booleanNr>=($numberNr+$stringNr)){
+                            $rows=$booleanNr;
+					        $column=0;
+					    }
+			            else{
+                            $rows=$numberNr+$stringNr;
+			                $column=1;
+				        }
+                        //create xml output on deploy page
+			            echo "<div class=\"form-group\">";
+                        echo "<div class=\"col-md-9 col-sm-9 col-xs-12\">";
+			            $str=0;
+			            $nr=0;
+			            for($q=0;$q<$rows;$q++){
+				            echo "<div class=\"col-md-9\">";
+				            echo "<label class=\"col-md-5\" id=\"label21\">";
+				            if($q<$i){
+					            if($booleanName[$q]=="true"){$verify="checked";}
+					            else{$verify="";}
+					            echo "<input type=\"checkbox\" class=\"js-switch\" ".$verify." id=\"check21\">".$booleanTag[$q];
+					        }
+				            echo "</label>";
+				            echo "<label class=\"control-label col-md-3 col-sm-3 col-xs-12\" id=\"labelInput\">";
+				            if($q<=($numberNr+$stringNr)){
+					            if($str<$stringNr){
+						            echo  $stringsTag[$str];
+							    }
+					            if(($str>=$stringNr)&&($nr<$numberNr)){
+					                echo $numbersTag[$nr];
+					            }
+				                echo "</label>";
+					            if($str<$stringNr){
+                                    echo "<div class=\"col-md-4 col-sm-6 col-xs-12\">";
+						            echo "<input type=\"text\" class=\"form-control\" id=\"inputField\" value=\"".$stringsName[$str]."\">";
+                                    echo "</div>";
+                                    $str=$str+1;
+
+						        }
+                                elseif(($str>=$stringNr)&&($nr<$numberNr)){
+                                    echo "<div class=\"col-md-4 col-sm-6 col-xs-12\">";
+                                    echo "<input type=\"text\" class=\"form-control\" id=\"inputField\" value=\"".$numbersName[$nr]."\">";
+                                    echo "</div>";
+                                    $nr=$nr+1;
+					            }
+				            }
+                            echo "</div>";
+			            }
+		            }
+		            else echo "XML file couldn't be found!";
+			    ?>
+                    </div>
+                      <div class="col-md-3 col-sm-3 col-xs-12">
+                      <section class="panel">
+
+                      		<div class="x_title">
+                          			<h2 class="green"><i class="fa fa-envelope"></i> Commit Message</h2>
+                          			<div class="clearfix"></div>
+                        	</div>
+                       		<div class="panel-body">
+		                          <p><?php echo $commitMessage;?></p>
+		                          <br />
+
+                          		  <div class="project_detail">
+		                          		<p class="title">Commiter Name</p>
+		                          		<p><?php echo $commitAuthor; ?></p>
+
+                          		  </div>
+                        	</div>
+
+                      </section>
+                      </div>
+
+                  </div>
+
+                    </form>
+                  </div>
+                </div>
+
+          	  </div>
+            </div>
+             <div class="row">
+              <div class="col-md-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h3 align="center">Target</h3>
+                    <div class="clearfix"></div>
+                  </div>
+
+            <div class="x-content">
+
+                <br />
+                <form name="contact" <?php echo "action=\"http://141.85.170.136/production/terminal.html?randPort=".$randPort."&pathProj=".$pathProj."\""; ?> id="contact" class="form-horizontal " method="post">
+
+                    <div class="form-group" >
+			<div id="result"></div>
+                        <div class="col-md-12 col-sm-12 col-xs-12" id="result">
+
+	                            <label class="control-label col-m col-sm-2 col-xs-12">User</label>
+                                  <div class="col-md-3 col-sm-2 col-xs-12">
+                                      <input type="text" name="user" id="user" class="form-control" placeholder="Target's User">
+                                  </div>
+                                <label class="col-md-2">
+                                </label>
+	                            <label class="control-label col-md-2 col-sm-2 col-xs-12">IP</label>
+                                  <div class="col-md-3 col-sm-4 col-xs-12">
+                                      <input type="text" name="ip"  id="ip" class="form-control" placeholder="Default Input">
+                                  </div>
+
+	                            <br />
+	                           <label class="control-label col-m col-sm-2 col-xs-12">Password</label>
+                                  <div class="col-md-3 col-sm-2 col-xs-12">
+                                       <input type="password" name="password" id="password" class="form-control" placeholder="Target's Password">
+                                  </div>
+                                <label class="col-md-2">
+                                </label>
+	                            <label class="control-label col-md-2 col-sm-2 col-xs-12">PORT</label>
+                                  <div class="col-md-3 col-sm-4 col-xs-12">
+                                     <input type="text" name="port" id="port" class="form-control" placeholder="22">
+                                  </div>
+
+
+                        </div>
+
+
+
+                  </div>
+
+
+                      <div class="ln_solid"></div>
+                      <div class="form-group">
+                        <div align="center">
+                          <input type="submit" name="submit"  id="submit" value="Deploy" class="btn btn-success" >
+                        </div>
+                      </div>
+
+                    </form>
+                  </div>
+                </div>
+
+          	  </div>
+            </div>
+         </div>
+
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+          <div class="pull-right">
+           Git Application by Andrei Gaita
+          </div>
+          <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="../vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="../vendors/nprogress/nprogress.js"></script>
+    <!-- Chart.js -->
+    <script src="../vendors/Chart.js/dist/Chart.min.js"></script>
+    <!-- gauge.js -->
+    <script src="../vendors/gauge.js/dist/gauge.min.js"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <!-- iCheck -->
+    <script src="../vendors/iCheck/icheck.min.js"></script>
+    <!-- Skycons -->
+    <!-- Switchery -->
+    <script src="../vendors/switchery/dist/switchery.min.js"></script>
+    <script src="../vendors/skycons/skycons.js"></script>
+    <!-- Flot -->
+    <script src="../vendors/Flot/jquery.flot.js"></script>
+    <script src="../vendors/Flot/jquery.flot.pie.js"></script>
+    <script src="../vendors/Flot/jquery.flot.time.js"></script>
+    <script src="../vendors/Flot/jquery.flot.stack.js"></script>
+    <script src="../vendors/Flot/jquery.flot.resize.js"></script>
+    <!-- Flot plugins -->
+    <script src="../vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+    <script src="../vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+    <script src="../vendors/flot.curvedlines/curvedLines.js"></script>
+    <!-- DateJS -->
+    <script src="../vendors/DateJS/build/date.js"></script>
+
+    <!-- bootstrap-daterangepicker -->
+    <script src="js/moment/moment.min.js"></script>
+    <script src="js/datepicker/daterangepicker.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="../build/js/custom.min.js"></script>
+
+
+  </body>
+</html>

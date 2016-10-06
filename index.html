@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Git Deployer </title>
+
+    <!-- Bootstrap -->
+    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link href="https://colorlib.com/polygon/gentelella/css/animate.min.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="../build/css/custom.min.css" rel="stylesheet">
+  </head>
+
+  <body class="login">
+
+    <?php
+        //Signup PHP Code
+
+        if(!empty($_POST['submit'])) {
+            $mysqli=new mysqli("localhost","root","lenovo1993","Deploy");
+            if (mysqli_connect_errno()){
+               echo "Failed to connect to MySQL: " . mysqli_connect_error();
+            }
+            $name = $_POST['nameGit'];
+            $password = hash("sha512" ,$_POST['passGit']);
+            $token = $_POST['token'];
+            $email = $_POST['email'];
+            $verifyEmail = array();
+            $verifyEmail = explode("@",$email);
+            $defaultEmail = "philro-vision.com";
+            $boolEmail = strcmp($verifyEmail[1],$defaultEmail);
+            if($boolEmail==0){
+                $command = "mkdir /var/www/html/user/".$name;
+                shell_exec($command);
+                $query = "INSERT INTO User (nameGit,passGit,token,emailGit) VALUES ('$name','$password','$token','$email')";
+                try{
+                    $mysqli->autocommit(FALSE);
+                    $result=$mysqli->query($query) or die(mysqli_error());
+                    if ( !$result ) {
+                        $result->free();
+                        throw new Exception($mysqli->error);
+                    }
+
+                    if (!$mysqli->commit()) {
+                        print_r("Transaction commit failed\n");
+                        exit();
+                    }
+                    $mysqli->commit();
+                    $mysqli->autocommit(TRUE);
+                    $mysqli->close();
+                }catch ( Exception $e ) {
+
+                    // before rolling back the transaction, you'd want
+                    // to make sure that the exception was db-related
+                    $mysqli->rollback();
+                    $mysqli->autocommit(TRUE); // i.e., end transaction
+                }
+            }
+
+        }
+    //SignIn PHP Code
+
+    if(!empty($_POST['Login'])) {
+        $mysqli=new mysqli("localhost","root","lenovo1993","Deploy");
+        if (mysqli_connect_errno()){
+           echo "Failed to connect to MySQL: " . mysqli_connect_error();
+        }
+        $nameLogin = $_POST['loginName'];
+        $passLogin = hash("sha512" ,$_POST['loginPass']);
+        if($_SERVER["REQUEST_METHOD"] == "POST") {
+            if($_POST['loginName'] && $_POST['loginPass']){
+                $test="SELECT * FROM User WHERE nameGit = '$nameLogin'";
+                $result=$mysqli->query($test) or die(mysqli_error());
+                $usermysql=mysqli_fetch_array($result);
+                if($usermysql==''){
+                    die("Utilizatorul nu există în baza de date!Încercaţi din nou!<a href='http://141.85.170.136'>&larr; Back</a>");
+                }
+                else{
+                    $boolPass = strcmp($usermysql['passGit'],$passLogin);
+                    if($boolPass==0){
+                        if (session_status() == PHP_SESSION_NONE) {
+                            session_start();
+                            $_SESSION["userDeploy"] = $nameLogin;
+                            $_SESSION["177neQsobx43"] = $_POST['loginPass'];
+                        }
+                        header("Location: http://141.85.170.136/production/home.html");
+                        exit;
+                    }
+                    else{
+                        die("Parola incorecta!Încercaţi din nou!<a href='http://141.85.170.136'>&larr; Back</a>");
+                    }
+                }
+            }
+        }
+    }
+
+    ?>
+
+    <div>
+      <a class="hiddenanchor" id="signup"></a>
+      <a class="hiddenanchor" id="signin"></a>
+
+      <div class="login_wrapper">
+        <div class="animate form login_form">
+          <section class="login_content">
+            <form method="post">
+              <h1>Login Form</h1>
+              <div>
+                <input type="text" name="loginName" class="form-control" placeholder="Username" required="" />
+              </div>
+              <div>
+                <input type="password" name="loginPass" class="form-control" placeholder="Password" required="" />
+              </div>
+              <div>
+                <input type="submit" name="Login" class="btn btn-default submit" />
+                <a class="reset_pass" href="#">Lost your password?</a>
+              </div>
+
+              <div class="clearfix"></div>
+
+              <div class="separator">
+                <p class="change_link">New to site?
+                  <a href="#signup" class="to_register"> Create Account </a>
+                </p>
+
+                <div class="clearfix"></div>
+                <br />
+
+                <div>
+                  <h1><i class="fa fa-git-square"></i> Git Deployer!</h1>
+                  <p>This Application is meant to be a supporting tool in working with Git!  </p>
+                </div>
+              </div>
+            </form>
+          </section>
+        </div>
+
+        <div id="register" class="animate form registration_form">
+          <section class="login_content">
+            <form action="index.html" method="post">
+              <h1>Create Account</h1>
+              <div>
+                <input type="text" name="nameGit" class="form-control" placeholder="Git User" required="" />
+              </div>
+              <div>
+                <input type="password" name="passGit" class="form-control" placeholder="Git Password" required="" />
+              </div>
+              <div>
+                <input type="text" name="token" class="form-control" placeholder="Private Token" required="" />
+              </div>
+              <div>
+                <input type="text" name="email" class="form-control" placeholder="Git Email" required="" />
+              </div>
+              <div>
+                <input class="btn btn-default submit" type="submit" name="submit"  />
+              </div>
+
+              <div class="clearfix"></div>
+
+              <div class="separator">
+                <p class="change_link">Already a member ?
+                  <a href="#signin" class="to_register"> Log in </a>
+                </p>
+
+                <div class="clearfix"></div>
+                <br />
+
+
+              </div>
+            </form>
+          </section>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

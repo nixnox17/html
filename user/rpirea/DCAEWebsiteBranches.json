@@ -1,0 +1,21 @@
+[
+    {
+        "commit": {
+            "author_email": "radu.hobincu@upb.ro",
+            "author_name": "Radu Hobincu",
+            "authored_date": "2016-07-15T13:14:37.000+03:00",
+            "committed_date": "2016-07-15T13:14:37.000+03:00",
+            "committer_email": "radu.hobincu@upb.ro",
+            "committer_name": "Radu Hobincu",
+            "id": "5cb3767e5e71f234f8dd07b80a6f2b72b6a1c12c",
+            "message": "image url is now used as website url to comply with Horia Cucu's request for personal website\n",
+            "parent_ids": [
+                "5ec2237e6605b1c8de1607e51b2647f6582ccbd8"
+            ]
+        },
+        "developers_can_merge": false,
+        "developers_can_push": false,
+        "name": "master",
+        "protected": false
+    }
+]

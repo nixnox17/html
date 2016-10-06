@@ -1,0 +1,21 @@
+[
+    {
+        "commit": {
+            "author_email": "lucian.petrica@upb.ro",
+            "author_name": "Lucian Petrica",
+            "authored_date": "2016-01-26T23:15:45.000+02:00",
+            "committed_date": "2016-01-26T23:15:45.000+02:00",
+            "committer_email": "lucian.petrica@upb.ro",
+            "committer_name": "Lucian Petrica",
+            "id": "e17cef8b04f10c666049bac68677001aec7654ac",
+            "message": "Fixed bug caused by large shift of small variable; on behalf of @acalin\n",
+            "parent_ids": [
+                "73486b6f3a0273365c9095b66376e439283d08aa"
+            ]
+        },
+        "developers_can_merge": false,
+        "developers_can_push": false,
+        "name": "master",
+        "protected": true
+    }
+]

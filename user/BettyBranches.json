@@ -1,0 +1,59 @@
+[
+    {
+        "commit": {
+            "author_email": "user@rcodreanu-MS-7996",
+            "author_name": "Administrator",
+            "authored_date": "2016-08-26T19:34:46.000+03:00",
+            "committed_date": "2016-08-26T19:34:46.000+03:00",
+            "committer_email": "user@rcodreanu-MS-7996",
+            "committer_name": "Administrator",
+            "id": "94f7e56e823c73610f136025779c7da3af713e70",
+            "message": "added relative path to opencv3 include files, linked with pthread\n",
+            "parent_ids": [
+                "8821095ba9d64eb6527d464608e0b46a38836afe"
+            ]
+        },
+        "developers_can_merge": false,
+        "developers_can_push": false,
+        "name": "master",
+        "protected": true
+    },
+    {
+        "commit": {
+            "author_email": "mihai.dicianu@philro-vision.com",
+            "author_name": "m.dicianu",
+            "authored_date": "2016-08-30T01:18:20.000+03:00",
+            "committed_date": "2016-08-30T01:18:20.000+03:00",
+            "committer_email": "mihai.dicianu@philro-vision.com",
+            "committer_name": "m.dicianu",
+            "id": "4e3551434a03d636b398ad4ea162c949a54ea0d7",
+            "message": "added CMakeLists.txt, deleted nbproject related files\n",
+            "parent_ids": [
+                "94f7e56e823c73610f136025779c7da3af713e70"
+            ]
+        },
+        "developers_can_merge": false,
+        "developers_can_push": false,
+        "name": "processing",
+        "protected": false
+    },
+    {
+        "commit": {
+            "author_email": "mihai.dicianu@philro-vision.com",
+            "author_name": "m.dicianu",
+            "authored_date": "2016-09-22T18:01:13.000+03:00",
+            "committed_date": "2016-09-22T18:01:13.000+03:00",
+            "committer_email": "mihai.dicianu@philro-vision.com",
+            "committer_name": "m.dicianu",
+            "id": "87e3f123619afa24c57359812dce508188a145da",
+            "message": "VideoCamera can now behave as a virtual camera, grabbing frames from a specified file. Added an icecream class.\n",
+            "parent_ids": [
+                "b4bc6181a262a131c471f2ad8f97b897e1d67330"
+            ]
+        },
+        "developers_can_merge": false,
+        "developers_can_push": false,
+        "name": "work_in_progress",
+        "protected": false
+    }
+]

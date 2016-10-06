@@ -1,0 +1,40 @@
+[
+    {
+        "commit": {
+            "author_email": "calin.bira@silicon-acuity.com",
+            "author_name": "Calin Bira",
+            "authored_date": "2016-09-29T02:22:08.000+03:00",
+            "committed_date": "2016-09-29T02:22:08.000+03:00",
+            "committer_email": "calin.bira@silicon-acuity.com",
+            "committer_name": "Calin Bira",
+            "id": "ef17a16da295fe695c336e367eafbc2d4efa2ed6",
+            "message": "added binary logs for running emulator\n",
+            "parent_ids": [
+                "4b04a90d47d3306a38dc25aa133fbe6c9742d148"
+            ]
+        },
+        "developers_can_merge": false,
+        "developers_can_push": false,
+        "name": "master",
+        "protected": true
+    },
+    {
+        "commit": {
+            "author_email": "radu.codreanu@philro-vision.com",
+            "author_name": "Radu Codreanu",
+            "authored_date": "2016-09-12T12:58:41.000+03:00",
+            "committed_date": "2016-09-12T12:58:41.000+03:00",
+            "committer_email": "radu.codreanu@philro-vision.com",
+            "committer_name": "Radu Codreanu",
+            "id": "478f0b1356bdc50c97a418eb1f71e6047bebd668",
+            "message": "Add new directory",
+            "parent_ids": [
+                "6726edb0387979169313af047346cd742ab2a5bb"
+            ]
+        },
+        "developers_can_merge": false,
+        "developers_can_push": false,
+        "name": "patch-1",
+        "protected": false
+    }
+]

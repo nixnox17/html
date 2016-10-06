@@ -1,0 +1,20 @@
+Incoming request(POST)/
+readable
+12300
+New connection
+Client :: ready
+Comanda:echo git clone http://rpirea:******@gitlab.dcae.pub.ro/PhilroVision/powercycle.git powercycle;git clone http://rpirea:f7vig847fk7g@gitlab.dcae.pub.ro/PhilroVision/powercycle.git powercycle; echo cd powercycle;cd powercycle;echo sudo make deploy autoGain=false runAlpr=true motionDetection=true clustering=true streaming=true logFile=/var/log/anpr.log logLevel=DEBUG photoSavePath=/var/anpr cameraId=Camera 0 siteId=Unknown Site width=1280       			       			       		 height=1024       			       			       		 exposureTimeLow=0       			       			       		 exposureTimeHigh=2500       			       			       		 photoCount=0       			       			       		 delay=0       			       			       		 horizontalOffset=0       			       			       		 verticalOffset=0       			       			       		 streamWidth=640       			       			       		 streamHeight=480       			       			       		 ; sudo make deploy autoGain=false runAlpr=true motionDetection=true clustering=true streaming=true logFile=/var/log/anpr.log logLevel=DEBUG photoSavePath=/var/anpr cameraId=Camera 0 siteId=Unknown Site width=1280       			       			       		 height=1024       			       			       		 exposureTimeLow=0       			       			       		 exposureTimeHigh=2500       			       			       		 photoCount=0       			       			       		 delay=0       			       			       		 horizontalOffset=0       			       			       		 verticalOffset=0       			       			       		 streamWidth=640       			       			       		 streamHeight=480       			       			       		 ; 
+Connection closed
+Incoming request(POST)/
+readable
+12300
+New connection
+Client :: ready
+Connection closed
+Incoming request(POST)/
+readable
+12300
+New connection
+Client :: ready
+Comanda:echo git clone http://rpirea:******@gitlab.dcae.pub.ro/PhilroVision/powercycle.git powercycle;git clone http://rpirea:f7vig847fk7g@gitlab.dcae.pub.ro/PhilroVision/powercycle.git powercycle; echo cd powercycle;cd powercycle;echo sudo make deploy autoGain=false runAlpr=true motionDetection=true clustering=true streaming=true logFile=/var/log/anpr.log logLevel=DEBUG photoSavePath=/var/anpr cameraId=Camera 0 siteId=Unknown Site width=1280       			       			       		 height=1024       			       			       		 exposureTimeLow=0       			       			       		 exposureTimeHigh=2500       			       			       		 photoCount=0       			       			       		 delay=0       			       			       		 horizontalOffset=0       			       			       		 verticalOffset=0       			       			       		 streamWidth=640       			       			       		 streamHeight=480       			       			       		 ; sudo make deploy autoGain=false runAlpr=true motionDetection=true clustering=true streaming=true logFile=/var/log/anpr.log logLevel=DEBUG photoSavePath=/var/anpr cameraId=Camera 0 siteId=Unknown Site width=1280       			       			       		 height=1024       			       			       		 exposureTimeLow=0       			       			       		 exposureTimeHigh=2500       			       			       		 photoCount=0       			       			       		 delay=0       			       			       		 horizontalOffset=0       			       			       		 verticalOffset=0       			       			       		 streamWidth=640       			       			       		 streamHeight=480       			       			       		 ; 
+Connection closed

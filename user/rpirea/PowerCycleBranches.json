@@ -1,0 +1,21 @@
+[
+    {
+        "commit": {
+            "author_email": "lucian.petrica@upb.ro",
+            "author_name": "Lucian Petric\u0103",
+            "authored_date": "2014-03-03T17:01:16.000+02:00",
+            "committed_date": "2014-03-03T17:01:16.000+02:00",
+            "committer_email": "lucian.petrica@upb.ro",
+            "committer_name": "Lucian Petric\u0103",
+            "id": "74ee887fe568cdb54ffdcf49e111874f802d8770",
+            "message": "Modified rule, apparently it was broken\n",
+            "parent_ids": [
+                "28bc664292b3c0b6e12a539a7de03146e00bc1d1"
+            ]
+        },
+        "developers_can_merge": false,
+        "developers_can_push": false,
+        "name": "master",
+        "protected": true
+    }
+]

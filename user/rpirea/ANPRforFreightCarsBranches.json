@@ -1,0 +1,22 @@
+[
+    {
+        "commit": {
+            "author_email": "radu.hobincu@upb.ro",
+            "author_name": "Radu Hobincu",
+            "authored_date": "2016-10-01T21:15:43.000+03:00",
+            "committed_date": "2016-10-01T21:15:43.000+03:00",
+            "committer_email": "radu.hobincu@upb.ro",
+            "committer_name": "Radu Hobincu",
+            "id": "3a607a653ac307c2e4c05d3fee863abff687027c",
+            "message": "Merge branch 'feature-freeze' into 'master'\r\n\r\nFeature freeze\r\n\r\n\r\n\r\nSee merge request !16",
+            "parent_ids": [
+                "3e77038efe41b2c172dea11fa9393f26805ced65",
+                "8d58f394d087716b1af8bf0fa930f050807a5e4a"
+            ]
+        },
+        "developers_can_merge": false,
+        "developers_can_push": false,
+        "name": "master",
+        "protected": true
+    }
+]

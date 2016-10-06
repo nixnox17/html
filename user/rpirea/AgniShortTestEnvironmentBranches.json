@@ -1,0 +1,100 @@
+[
+    {
+        "commit": {
+            "author_email": "radu.hobincu@upb.ro",
+            "author_name": "Radu Hobincu",
+            "authored_date": "2015-08-12T14:18:47.000+03:00",
+            "committed_date": "2015-08-12T14:18:47.000+03:00",
+            "committer_email": "radu.hobincu@upb.ro",
+            "committer_name": "Radu Hobincu",
+            "id": "5c40c8eb443afcf61dfddcfa3f70bd125613e1db",
+            "message": "Added debug info to Record.setValue\n",
+            "parent_ids": [
+                "fb85265b6ee8423ef83de58a9275e3bf2beda108"
+            ]
+        },
+        "developers_can_merge": false,
+        "developers_can_push": false,
+        "name": "master",
+        "protected": true
+    },
+    {
+        "commit": {
+            "author_email": "radu.hobincu@upb.ro",
+            "author_name": "Radu Hobincu",
+            "authored_date": "2015-05-08T16:28:05.000+03:00",
+            "committed_date": "2015-05-08T16:28:05.000+03:00",
+            "committer_email": "radu.hobincu@upb.ro",
+            "committer_name": "Radu Hobincu",
+            "id": "f66b310cba9ddc3920c6fa12c1e48d5da5020b43",
+            "message": "Merge branch 'master' of /home/git/repositories/dcae-public/agni-short-test-environment into v1.0\n",
+            "parent_ids": [
+                "c92e91910773892f07a9cb208a52914e74cb21a4",
+                "d245eb572db921b64dba566c3303ff6f5f65557b"
+            ]
+        },
+        "developers_can_merge": false,
+        "developers_can_push": false,
+        "name": "v1.0",
+        "protected": true
+    },
+    {
+        "commit": {
+            "author_email": "radu.hobincu@upb.ro",
+            "author_name": "Radu Hobincu",
+            "authored_date": "2015-05-08T16:28:37.000+03:00",
+            "committed_date": "2015-05-08T16:28:37.000+03:00",
+            "committer_email": "radu.hobincu@upb.ro",
+            "committer_name": "Radu Hobincu",
+            "id": "bd63ccbb1c2aeafb6f45f0016dfd66baa07c0ce2",
+            "message": "Merge branch 'master' of /home/git/repositories/dcae-public/agni-short-test-environment into v1.0_dcae\n",
+            "parent_ids": [
+                "67af8d4ef6549d459a8d60064c0878f9c5b3ff6c",
+                "d245eb572db921b64dba566c3303ff6f5f65557b"
+            ]
+        },
+        "developers_can_merge": false,
+        "developers_can_push": false,
+        "name": "v1.0_dcae",
+        "protected": true
+    },
+    {
+        "commit": {
+            "author_email": "radu.hobincu@upb.ro",
+            "author_name": "Radu Hobincu",
+            "authored_date": "2015-07-14T09:30:41.000+03:00",
+            "committed_date": "2015-07-14T09:30:41.000+03:00",
+            "committer_email": "radu.hobincu@upb.ro",
+            "committer_name": "Radu Hobincu",
+            "id": "ba8bacb8b2435c6b749aa9a565a99e7059b91a9e",
+            "message": "Merge branch 'v1.1_dcae' into v1.1\n",
+            "parent_ids": [
+                "9ad56cb84b78e81f37c1f8bb29d44f58def39709",
+                "641cd8b0f301a80b015f94cdc454facd4f9c5221"
+            ]
+        },
+        "developers_can_merge": false,
+        "developers_can_push": false,
+        "name": "v1.1",
+        "protected": true
+    },
+    {
+        "commit": {
+            "author_email": "radu.hobincu@upb.ro",
+            "author_name": "Radu Hobincu",
+            "authored_date": "2015-08-12T14:51:52.000+03:00",
+            "committed_date": "2015-08-12T14:51:52.000+03:00",
+            "committer_email": "radu.hobincu@upb.ro",
+            "committer_name": "Radu Hobincu",
+            "id": "cd388ac0636d508f9c53514db7ebc03810f9860a",
+            "message": "Fixed a bug preventing the client to set null values in table\n",
+            "parent_ids": [
+                "5c40c8eb443afcf61dfddcfa3f70bd125613e1db"
+            ]
+        },
+        "developers_can_merge": false,
+        "developers_can_push": false,
+        "name": "v1.1_dcae",
+        "protected": true
+    }
+]

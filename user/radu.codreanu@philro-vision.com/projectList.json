@@ -1,0 +1,222 @@
+[
+    {
+        "archived": false,
+        "avatar_url": null,
+        "builds_enabled": true,
+        "container_registry_enabled": true,
+        "created_at": "2016-09-11T19:49:25.986Z",
+        "creator_id": 6,
+        "default_branch": "master",
+        "description": "Project for a weight analysis of a running train/freight-car with a scaler & presence sensors (including a full-blown simulator for all of them)",
+        "forks_count": 0,
+        "http_url_to_repo": "http://gitlab.dcae.pub.ro/PhilroVision/FreightTrainScale.git",
+        "id": 104,
+        "issues_enabled": true,
+        "last_activity_at": "2016-09-28T23:22:14.735Z",
+        "merge_requests_enabled": true,
+        "name": "FreightTrainScale",
+        "name_with_namespace": "Philro Vision / FreightTrainScale",
+        "namespace": {
+            "avatar": {
+                "url": "/uploads/group/avatar/68/philro.png"
+            },
+            "created_at": "2016-06-21T14:12:38.674Z",
+            "deleted_at": null,
+            "description": "",
+            "id": 68,
+            "name": "Philro Vision",
+            "owner_id": null,
+            "path": "PhilroVision",
+            "request_access_enabled": true,
+            "share_with_group_lock": false,
+            "updated_at": "2016-06-21T14:13:19.935Z",
+            "visibility_level": 0
+        },
+        "open_issues_count": 0,
+        "path": "FreightTrainScale",
+        "path_with_namespace": "PhilroVision/FreightTrainScale",
+        "permissions": {
+            "group_access": null,
+            "project_access": {
+                "access_level": 40,
+                "notification_level": 3
+            }
+        },
+        "public": false,
+        "public_builds": true,
+        "shared_runners_enabled": true,
+        "shared_with_groups": [],
+        "snippets_enabled": false,
+        "ssh_url_to_repo": "git@gitlab.dcae.pub.ro:PhilroVision/FreightTrainScale.git",
+        "star_count": 0,
+        "tag_list": [],
+        "visibility_level": 0,
+        "web_url": "http://gitlab.dcae.pub.ro/PhilroVision/FreightTrainScale",
+        "wiki_enabled": true
+    },
+    {
+        "archived": false,
+        "avatar_url": null,
+        "builds_enabled": true,
+        "container_registry_enabled": true,
+        "created_at": "2016-08-26T08:12:51.463Z",
+        "creator_id": 3,
+        "default_branch": "master",
+        "description": "Project implemented for Betty Ice to detect broken ice-cream on the production line.",
+        "forks_count": 0,
+        "http_url_to_repo": "http://gitlab.dcae.pub.ro/PhilroVision/Betty.git",
+        "id": 101,
+        "issues_enabled": true,
+        "last_activity_at": "2016-09-23T12:04:44.881Z",
+        "merge_requests_enabled": true,
+        "name": "Betty",
+        "name_with_namespace": "Philro Vision / Betty",
+        "namespace": {
+            "avatar": {
+                "url": "/uploads/group/avatar/68/philro.png"
+            },
+            "created_at": "2016-06-21T14:12:38.674Z",
+            "deleted_at": null,
+            "description": "",
+            "id": 68,
+            "name": "Philro Vision",
+            "owner_id": null,
+            "path": "PhilroVision",
+            "request_access_enabled": true,
+            "share_with_group_lock": false,
+            "updated_at": "2016-06-21T14:13:19.935Z",
+            "visibility_level": 0
+        },
+        "open_issues_count": 0,
+        "path": "Betty",
+        "path_with_namespace": "PhilroVision/Betty",
+        "permissions": {
+            "group_access": null,
+            "project_access": {
+                "access_level": 20,
+                "notification_level": 3
+            }
+        },
+        "public": false,
+        "public_builds": true,
+        "shared_runners_enabled": true,
+        "shared_with_groups": [],
+        "snippets_enabled": false,
+        "ssh_url_to_repo": "git@gitlab.dcae.pub.ro:PhilroVision/Betty.git",
+        "star_count": 1,
+        "tag_list": [],
+        "visibility_level": 0,
+        "web_url": "http://gitlab.dcae.pub.ro/PhilroVision/Betty",
+        "wiki_enabled": true
+    },
+    {
+        "archived": true,
+        "avatar_url": "http://gitlab.dcae.pub.ro/uploads/project/avatar/84/038965-green-grunge-clipart-icon-transport-travel-transportation-train3.png",
+        "builds_enabled": true,
+        "container_registry_enabled": null,
+        "created_at": "2016-02-26T10:26:55.902Z",
+        "creator_id": 3,
+        "default_branch": "master",
+        "description": "ANPR system for freight cars.",
+        "forks_count": 0,
+        "http_url_to_repo": "http://gitlab.dcae.pub.ro/PhilroVision/anpr_freight_cars.git",
+        "id": 84,
+        "issues_enabled": true,
+        "last_activity_at": "2016-10-01T18:21:27.058Z",
+        "merge_requests_enabled": true,
+        "name": "ANPR for Freight Cars",
+        "name_with_namespace": "Philro Vision / ANPR for Freight Cars",
+        "namespace": {
+            "avatar": {
+                "url": "/uploads/group/avatar/68/philro.png"
+            },
+            "created_at": "2016-06-21T14:12:38.674Z",
+            "deleted_at": null,
+            "description": "",
+            "id": 68,
+            "name": "Philro Vision",
+            "owner_id": null,
+            "path": "PhilroVision",
+            "request_access_enabled": true,
+            "share_with_group_lock": false,
+            "updated_at": "2016-06-21T14:13:19.935Z",
+            "visibility_level": 0
+        },
+        "open_issues_count": 2,
+        "path": "anpr_freight_cars",
+        "path_with_namespace": "PhilroVision/anpr_freight_cars",
+        "permissions": {
+            "group_access": null,
+            "project_access": {
+                "access_level": 10,
+                "notification_level": 3
+            }
+        },
+        "public": false,
+        "public_builds": true,
+        "shared_runners_enabled": true,
+        "shared_with_groups": [],
+        "snippets_enabled": false,
+        "ssh_url_to_repo": "git@gitlab.dcae.pub.ro:PhilroVision/anpr_freight_cars.git",
+        "star_count": 0,
+        "tag_list": [],
+        "visibility_level": 0,
+        "web_url": "http://gitlab.dcae.pub.ro/PhilroVision/anpr_freight_cars",
+        "wiki_enabled": true
+    },
+    {
+        "archived": false,
+        "avatar_url": "http://gitlab.dcae.pub.ro/uploads/project/avatar/76/anpr.png",
+        "builds_enabled": true,
+        "container_registry_enabled": null,
+        "created_at": "2015-11-09T18:05:18.225Z",
+        "creator_id": 3,
+        "default_branch": "master",
+        "description": "SW GPU implementation for ANPR application - philro.",
+        "forks_count": 0,
+        "http_url_to_repo": "http://gitlab.dcae.pub.ro/PhilroVision/anpr.git",
+        "id": 76,
+        "issues_enabled": true,
+        "last_activity_at": "2016-09-09T15:51:19.591Z",
+        "merge_requests_enabled": true,
+        "name": "ANPR",
+        "name_with_namespace": "Philro Vision / ANPR",
+        "namespace": {
+            "avatar": {
+                "url": "/uploads/group/avatar/68/philro.png"
+            },
+            "created_at": "2016-06-21T14:12:38.674Z",
+            "deleted_at": null,
+            "description": "",
+            "id": 68,
+            "name": "Philro Vision",
+            "owner_id": null,
+            "path": "PhilroVision",
+            "request_access_enabled": true,
+            "share_with_group_lock": false,
+            "updated_at": "2016-06-21T14:13:19.935Z",
+            "visibility_level": 0
+        },
+        "open_issues_count": 14,
+        "path": "anpr",
+        "path_with_namespace": "PhilroVision/anpr",
+        "permissions": {
+            "group_access": null,
+            "project_access": {
+                "access_level": 30,
+                "notification_level": 3
+            }
+        },
+        "public": false,
+        "public_builds": true,
+        "shared_runners_enabled": true,
+        "shared_with_groups": [],
+        "snippets_enabled": false,
+        "ssh_url_to_repo": "git@gitlab.dcae.pub.ro:PhilroVision/anpr.git",
+        "star_count": 0,
+        "tag_list": [],
+        "visibility_level": 0,
+        "web_url": "http://gitlab.dcae.pub.ro/PhilroVision/anpr",
+        "wiki_enabled": true
+    }
+]

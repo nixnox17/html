@@ -1,0 +1,35 @@
+.wrapper {
+  font-style: "Arial";
+  font-size: 14px;
+  color: white;
+  width: 900px;
+  min-height: 540px;
+}
+.terminal {
+  background: black;
+  padding: 20px;
+  height: 490px;
+  width:900px;
+  overflow-y: auto;
+  text-align: left;
+  font-color:white;
+  font-wieght:bold;
+}
+
+.writter {
+  background: black;
+  padding: 10px;
+  white:900px;
+  
+}
+
+.writter input {
+  width: 880px;
+  background: black;
+  color: white;
+  border: 1px;
+  border-color:white;
+  border-style:solid;
+  border-radius: 5px;
+  padding:2px;
+}
